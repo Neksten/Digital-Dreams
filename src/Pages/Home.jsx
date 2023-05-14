@@ -1,61 +1,67 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Card from "../compontents/Card/Card";
-import {ArrowDown} from "../assets/ArrowDown";
 import DropDown from "../compontents/DropDown/DropDown";
 import {ArrowScroll} from "../assets/ArrowScroll";
+import FilterDropDown from "../compontents/FilterDropDown/FilterDropDown";
+import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {axiosProducts} from "../asyncActions/products";
+import {axiosCartProducts} from "../asyncActions/cart";
 
-// Запрос для каталога(все товары)
-const products = [
+const sortedList = [
+	'По возрастанию цены',
+	'По убыванию цены',
+	'По названию'
+]
+const filters = [
 	{
-		id: 1,
-		imgUrl: '../img/products/1.png',
-		title: 'Беспроводная компьютерная гарнитура Logitech G G435, черный/неоновый желтый',
-		price: 8500,
-		sale: 6800
+		title: 'Цвет',
+		options: [
+			'Чёрный',
+			'Белый',
+			'Красный'
+		]
 	},
 	{
-		id: 2,
-		imgUrl: '../img/products/2.png',
-		title: 'Компьютерный корпус Deepcool CK500 WH белый',
-		price: 7200
+		title: 'Бренд',
+		options: [
+			'Xiaomi',
+			'Deepcool',
+			'Яндекс'
+		]
 	},
 	{
-		id: 3,
-		imgUrl: '../img/products/3.png',
-		title: 'Наушники Beyerdynamic DT 990 PRO, черный',
-		price: 15750,
-		sale: 27430
-	},
-	{
-		id: 4,
-		imgUrl: '../img/products/4.png',
-		title: 'Фен Xiaomi Mi Ionic Hair Dryer H300 EU CMJ02ZHM (BHR5081GL)',
-		price: 2580,
-		sale: 2890
-	},
-	{
-		id: 5,
-		imgUrl: '../img/products/5.png',
-		title: 'Беспроводная компактная мышь Xiaomi Wireless Mouse Lite, черный',
-		price: 625,
-		sale: 920
-	},
-	{
-		id: 6,
-		imgUrl: '../img/products/6.png',
-		title: 'Умная колонка Яндекс Станция Мини без часов с Алисой, серый опал, 10Вт',
-		price: 5990,
-		sale: 6990
+		title: 'Размер',
+		options: [
+			'Чёрный',
+			'Белый',
+			'Красный'
+		]
 	}
 ]
 
-
 const Home = () => {
+	const dispatch = useDispatch()
+	// Все товары в каталоге
+	const products = useSelector(state => state.productsReducer.products)
+	const carts = useSelector(state => state.cartsReducer.carts)
+	
+	// До куда проскролит
 	const scrollToRef = useRef(null);
 	
+	// клик по стрелке до hero
 	function handleClick() {
 		scrollToRef.current.scrollIntoView({behavior: 'smooth'})
 	}
+	
+	useEffect(() => {
+		// грузим с бэка корзину и продукты
+		dispatch(axiosProducts())
+		dispatch(axiosCartProducts())
+	}, [])
+	
+	
+	console.log('carts: ', carts)
 	return (
 		<main className="page home">
 			<section className="hero">
@@ -73,8 +79,10 @@ const Home = () => {
 						<div className="catalogTop">
 							<h3 className="catalogTitle">Каталог</h3>
 							<div className="catalogFilters">
-								<div className="catalogFilter">Фильтры</div>
-								<DropDown/>
+								{filters.map((filter) => (
+									<FilterDropDown key={filter.title} title={filter.title} list={filter.options}/>
+								))}
+								<DropDown list={sortedList}/>
 							</div>
 						</div>
 						<div className="catalogProducts">

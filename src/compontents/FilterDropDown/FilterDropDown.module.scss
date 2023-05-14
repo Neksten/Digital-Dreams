@@ -1,4 +1,4 @@
-.dropdown {
+.filterDropdown {
   position: relative;
   border: 1px solid #E7E8EA;
   margin: 0 0 0 15px;
@@ -6,8 +6,7 @@
   line-height: 35px;
   border-radius: 5px;
   text-align: center;
-  width: 220px;
-  max-width: 100%;
+  max-width: 220px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   user-select: none;
@@ -16,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 10px;
     padding: 0 15px;
     span {
       position: relative;
@@ -27,24 +27,28 @@
   }
   .body {
     position: absolute;
-    width: 220px;
+    min-width: 180px;
     background-color: #fff;
     top: 41px;
     left: 0;
+    max-height: 150px;
+    overflow: auto;
     box-shadow: 0 0 5px 0 #00000059;
     border-radius: 5px;
     ul {
       display: flex;
       flex-direction: column;
-      padding: 10px 0;
+      padding: 10px 0 10px 15px;
     }
     li {
-      padding: 0 15px;
       line-height: 25px;
       text-align: start;
       display: flex;
       align-items: center;
       column-gap: 8px;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

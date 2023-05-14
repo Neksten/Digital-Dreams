@@ -1,9 +1,13 @@
 .header {
-  position: absolute;
   width: 100%;
-  padding: 35px 0;
+  padding: 20px 0;
   font-family: 'Montserrat', sans-serif;
   z-index: 10;
+  background-color: #2C2E30;
+  &.absolute {
+    position: absolute;
+    background: none;
+  }
   .menu {
     display: flex;
     align-items: center;

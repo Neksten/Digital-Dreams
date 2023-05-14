@@ -3,17 +3,12 @@ import styles from './DropDown.module.scss'
 import {ArrowDown} from "../../assets/ArrowDown";
 import OutsideClickHandler from "../OutsideClickHandler";
 
-const sortedList = [
-	'По возрастанию цены',
-	'По убыванию цены',
-	'По названию'
-]
-
-const DropDown = () => {
+const DropDown = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectionOption, setSelectedOption] = useState('Сортировать')
 	
-	const options = sortedList
+	const options = props.list
+	
 	// Открытие/закрытие dropdown
 	function toggleDropdown() {
 		setIsOpen(!isOpen)
@@ -33,7 +28,7 @@ const DropDown = () => {
 						<ul>
 							{options.map((option => (
 								<li key={option} onClick={() => handleOptionClick(option)}>
-									{option}
+									<span>{option}</span>
 								</li>
 							)))}
 						</ul>
