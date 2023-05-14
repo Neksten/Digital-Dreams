@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss'
-import {Cart} from "../../assets/Cart";
+import {CartIcon} from "../../assets/CartIcon";
 import {Favorite} from "../../assets/Favorite";
 import {User} from "../../assets/User";
 import {NavLink, useLocation} from "react-router-dom";
@@ -21,7 +21,7 @@ const Header = () => {
 						<NavLink to="/"><h4 className={styles.title}>DigitalDreams</h4></NavLink>
 						<ul className={styles.list}>
 							<li>
-								<NavLink to="/cart" className={styles.link}><Cart/> <span>567руб.</span></NavLink>
+								<NavLink to="/cart" className={styles.link}><CartIcon/></NavLink>
 							</li>
 							<li>
 								<NavLink to="" className={styles.link}><Favorite/></NavLink>

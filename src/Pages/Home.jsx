@@ -3,10 +3,7 @@ import Card from "../compontents/Card/Card";
 import DropDown from "../compontents/DropDown/DropDown";
 import {ArrowScroll} from "../assets/ArrowScroll";
 import FilterDropDown from "../compontents/FilterDropDown/FilterDropDown";
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {axiosProducts} from "../asyncActions/products";
-import {axiosCartProducts} from "../asyncActions/cart";
 
 const sortedList = [
 	'По возрастанию цены',
@@ -41,10 +38,8 @@ const filters = [
 ]
 
 const Home = () => {
-	const dispatch = useDispatch()
 	// Все товары в каталоге
 	const products = useSelector(state => state.productsReducer.products)
-	const carts = useSelector(state => state.cartsReducer.carts)
 	
 	// До куда проскролит
 	const scrollToRef = useRef(null);
@@ -54,14 +49,6 @@ const Home = () => {
 		scrollToRef.current.scrollIntoView({behavior: 'smooth'})
 	}
 	
-	useEffect(() => {
-		// грузим с бэка корзину и продукты
-		dispatch(axiosProducts())
-		dispatch(axiosCartProducts())
-	}, [])
-	
-	
-	console.log('carts: ', carts)
 	return (
 		<main className="page home">
 			<section className="hero">

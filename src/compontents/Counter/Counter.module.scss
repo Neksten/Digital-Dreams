@@ -28,6 +28,10 @@
   }
   & > .decrement {
     left: 25px;
+    &.hide {
+      opacity: 0.2;
+      cursor: text;
+    }
   }
   & > .increment {
     right: 25px;
