@@ -127,6 +127,7 @@ code {
     align-items: center;
     justify-content: space-between;
     margin: 0 0 30px 0;
+    column-gap: 30px;
   }
   .catalogTitle {
     font-size: 35px;
@@ -189,11 +190,13 @@ code {
     .catalogProducts {
       grid-template-columns: repeat(2, 210px);
     }
-    .catalogFilters {
-      display: none;
+    .catalogTop {
+      align-items: start;
     }
-    .catalogMenuFilters {
-      display: block;
+    .catalogFilters {
+      align-items: stretch;
+      flex-direction: column;
+      row-gap: 8px;
     }
   }
   @media (max-width: 480px) {

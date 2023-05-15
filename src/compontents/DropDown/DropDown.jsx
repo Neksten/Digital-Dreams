@@ -5,7 +5,6 @@ import OutsideClickHandler from "../OutsideClickHandler";
 
 const DropDown = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [selectionOption, setSelectedOption] = useState('Сортировать')
 	
 	const options = props.list
 	
@@ -15,14 +14,14 @@ const DropDown = (props) => {
 	}
 	// При клике на элемент dropdown
 	function handleOptionClick(option) {
-		setSelectedOption(option)
+		props.setSelectionOption(option)
 		setIsOpen(false)
 	}
 	
 	return (
 		<div className={styles.dropdown}>
 			<OutsideClickHandler onOutsideClick={setIsOpen}>
-				<div onClick={toggleDropdown} className={styles.top}>{selectionOption} <span><ArrowDown/></span></div>
+				<div onClick={toggleDropdown} className={styles.top}>{props.selectionOption} <span><ArrowDown/></span></div>
 				{isOpen &&
 					<div className={styles.body}>
 						<ul>

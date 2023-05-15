@@ -14,7 +14,7 @@ const Card = ({product}) => {
 	const dispatch = useDispatch()
 	
 	// Все товары в каталоге
-	const cart = useSelector(state => state.cartsReducer.cart)
+	const cart = useSelector(state => state.cartReducer.cart)
 	// Получаем элемент из корзины если он есть
 	const productCart = cart.find(i => i.id === product.id)
 	

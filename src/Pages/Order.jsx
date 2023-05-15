@@ -17,7 +17,7 @@ const Order = () => {
 	
 	const dispatch = useDispatch()
 	// Все товары в корзине
-	const cartProducts = useSelector(state => state.cartsReducer.cart)
+	const cartProducts = useSelector(state => state.cartReducer.cart)
 	
 	// Количество товаров в корзине
 	const cartProductsLength = cartProducts.length

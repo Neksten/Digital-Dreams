@@ -9,7 +9,6 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   user-select: none;
-  z-index: 100;
   .top {
     display: flex;
     align-items: center;
@@ -34,6 +33,7 @@
     overflow: auto;
     box-shadow: 0 0 5px 0 #00000059;
     border-radius: 5px;
+    z-index: 400;
     ul {
       display: flex;
       flex-direction: column;
@@ -48,6 +48,11 @@
       &:hover {
         opacity: 0.8;
       }
+    }
+  }
+  @media (max-width: 768px) {
+    .body {
+      width: 100%;
     }
   }
 }

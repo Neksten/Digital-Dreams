@@ -2,48 +2,29 @@ import React, {useEffect, useRef, useState} from 'react';
 import Card from "../compontents/Card/Card";
 import DropDown from "../compontents/DropDown/DropDown";
 import {ArrowScroll} from "../assets/ArrowScroll";
-import FilterDropDown from "../compontents/FilterDropDown/FilterDropDown";
 import {useDispatch, useSelector} from "react-redux";
 import {Filter} from "../assets/Filter";
-import Drawer from "../compontents/Drawer/Drawer";
+import {
+	ascendingPricesProductsAction,
+	byNameProductsAction,
+	descendingPricesProductsAction,
+} from "../store/filtersReducer";
+import FilterList from "../compontents/FilterList";
 
 const sortedList = [
+	'По названию',
 	'По возрастанию цены',
 	'По убыванию цены',
-	'По названию'
-]
-const filters = [
-	{
-		title: 'Цвет',
-		options: [
-			'Чёрный',
-			'Белый',
-			'Красный'
-		]
-	},
-	{
-		title: 'Бренд',
-		options: [
-			'Xiaomi',
-			'Deepcool',
-			'Яндекс'
-		]
-	},
-	{
-		title: 'Размер',
-		options: [
-			'Чёрный',
-			'Белый',
-			'Красный'
-		]
-	}
 ]
 
 const Home = () => {
+	const dispatch = useDispatch()
+	// Все отфильтрованные товары
+	const productsFilters = useSelector(state => state.productsFiltersReducer.filteredProducts)
+	
 	const [drawerOpened, setDrawerOpened] = useState(true);
-
-	// Все товары в каталоге
-	const products = useSelector(state => state.productsReducer.products)
+	// сортировка по названию и тд
+	const [sortedSelectionOption, setSortedSelectionOption] = useState('По названию')
 	
 	// До куда проскролит
 	const scrollToRef = useRef(null);
@@ -53,9 +34,26 @@ const Home = () => {
 		scrollToRef.current.scrollIntoView({behavior: 'smooth'})
 	}
 	
+	// по кнопки сортировать
+	useEffect(() => {
+		switch (sortedSelectionOption) {
+			case 'По названию':
+				// Сортировка по названию
+				dispatch(byNameProductsAction())
+				break
+			case 'По возрастанию цены':
+				// Сортировка по возрастанию цены
+				dispatch(descendingPricesProductsAction())
+				break
+			case 'По убыванию цены':
+				// Сортировка по убыванию
+				dispatch(ascendingPricesProductsAction())
+				break
+		}
+	}, [sortedSelectionOption])
+	
 	return (
 		<main className="page home">
-			{drawerOpened && <Drawer content={{sortedList, filters}} drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened}/>}
 			<section className="hero">
 				<div className="container heroContainer">
 					<div className="heroContent">
@@ -71,17 +69,15 @@ const Home = () => {
 						<div className="catalogTop">
 							<h3 className="catalogTitle">Каталог</h3>
 							<div className="catalogFilters">
-								{filters.map((filter) => (
-									<FilterDropDown key={filter.title} title={filter.title} list={filter.options}/>
-								))}
-								<DropDown list={sortedList}/>
+								<FilterList/>
+								<DropDown list={sortedList} selectionOption={sortedSelectionOption} setSelectionOption={setSortedSelectionOption}/>
 							</div>
 							<div className="catalogMenuFilters">
 								<div onClick={() => setDrawerOpened(!drawerOpened)} className="catalogMenuFiltersTop"><Filter/> <span>Фильтры</span></div>
 							</div>
 						</div>
 						<div className="catalogProducts">
-							{products.map((product) => (
+							{productsFilters.map((product) => (
 								<Card key={product.id} product={product}/>
 							))}
 						</div>

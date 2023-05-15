@@ -19,7 +19,7 @@ const Cart = () => {
 	
 	const dispatch = useDispatch()
 	// Все товары в корзине
-	const cartProducts = useSelector(state => state.cartsReducer.cart)
+	const cartProducts = useSelector(state => state.cartReducer.cart)
 	
 	// обновить итоговую цену
 	function updatedTotalPrice({price, status}) {
