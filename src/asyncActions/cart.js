@@ -26,6 +26,8 @@ export const axiosAddCartProduct = (product) => {
 			// новый элемент
 			const newProduct = {
 				id: product.id,
+				retailPrice: product.retailPrice,
+				discountPrice: product.discountPrice,
 				count: 1
 			}
 			// корина с новым элементом

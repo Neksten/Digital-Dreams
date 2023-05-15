@@ -66,4 +66,10 @@
       background-color: #D3BA96;
     }
   }
+  @media (max-width: 480px) {
+    width: 100%;
+    .cardImage {
+      width: 90px;
+    }
+  }
 }

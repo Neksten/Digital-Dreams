@@ -65,6 +65,7 @@ code {
     max-width: 600px;
   }
   .heroContent {
+    padding: 100px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,12 +79,10 @@ code {
   .heroText {
     font-size: 16px;
     text-align: center;
+    margin: 0 0 100px 0;
   }
   .heroScroll {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     svg {
@@ -103,6 +102,23 @@ code {
       max-width: 100%;
     }
   }
+  @media (max-width: 768px) {
+    .heroTitle {
+      font-size: 35px;
+      margin: 0 0 20px 0;
+    }
+    .heroText {
+      font-size: 14px;
+    }
+  }
+  @media (max-height: 470px) {
+    .heroContent {
+      padding: 40px 0 0 0;
+    }
+    .heroText {
+      margin: 0 0 40px 0;
+    }
+  }
 }
 .catalog {
   padding: 50px 0;
@@ -119,6 +135,7 @@ code {
   .catalogFilters {
     display: flex;
     align-items: center;
+    column-gap: 15px;
   }
   .catalogFilter {
     height: 35px;
@@ -140,8 +157,50 @@ code {
   .catalogProducts {
     display: grid;
     grid-template-columns: repeat(5, 210px);
-    justify-content: space-between;
-    row-gap: 30px;
+    gap: 30px;
+  }
+  .catalogMenuFilters {
+    display: none;
+    .catalogMenuFiltersTop {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+      span {
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+  @media (max-width: 1160px) {
+    .catalogProducts {
+      grid-template-columns: repeat(4, 210px);
+    }
+  }
+  @media (max-width: 992px) {
+    .catalogProducts {
+      grid-template-columns: repeat(3, 210px);
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 30px 0;
+    .catalogProducts {
+      grid-template-columns: repeat(2, 210px);
+    }
+    .catalogFilters {
+      display: none;
+    }
+    .catalogMenuFilters {
+      display: block;
+    }
+  }
+  @media (max-width: 480px) {
+    .catalogProducts {
+      column-gap: 10px;
+      grid-template-columns: repeat(2, 48.5%);
+    }
   }
 }
 
@@ -151,6 +210,7 @@ code {
   .heroContent {
     display: grid;
     column-gap: 50px;
+    row-gap: 30px;
     grid-template-columns: 670px 1fr;
   }
   .heroProducts {
@@ -169,60 +229,6 @@ code {
     span {
       opacity: 0.5;
       margin: 0 0 0 10px;
-    }
-  }
-  .heroSidebar {
-    .arrange {
-      font-size: 16px;
-      font-weight: 600;
-      display: inline-block;
-      height: 40px;
-      line-height: 40px;
-      width: 100%;
-      margin: 0 0 15px 0;
-      border-radius: 10px;
-      text-align: center;
-      background-color: #E5CFB0;
-      color: #fff;
-      user-select: none;
-      transition: all 0.3s ease-in-out;
-      &:hover {
-        background-color: #D3BA96;
-      }
-    }
-    .info {
-      background-color: #F6F6F6;
-      border-radius: 15px;
-      padding: 15px;
-      .total {
-        display: inline-block;
-        width: 100%;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #A0A0A0;
-        margin: 0 0 15px 0;
-      }
-      .sale {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 0 0 35px 0;
-        .price {
-          color: #F93E3E;
-        }
-      }
-      .totalPrice {
-        font-weight: 600;
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        .title {
-          font-size: 20px;
-        }
-        .price {
-          font-size: 25px;
-        }
-      }
     }
   }
   .heroEmpty {
@@ -249,6 +255,71 @@ code {
     }
     h4 {
       font-size: 14px;
+      font-weight: 600;
+    }
+  }
+  @media (max-width: 992px) {
+    .heroContent {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 480px) {
+    padding: 30px 0;
+  }
+}
+
+.heroOrder {
+  padding: 50px 0;
+  height: 100%;
+  .title {
+    font-weight: 700;
+    font-size: 30px;
+    margin: 0 0 20px 0;
+  }
+  .heroContent {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: 670px 1fr;
+  }
+  .userFormRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    &:not(:last-child) {
+      margin: 0 0 15px 0;
+    }
+  }
+}
+
+.drawer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.5);
+  .drawerContent {
+    padding: 40px 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    background-color: #fff;
+    width: 350px;
+  }
+  .drawerTop {
+    margin: 0 0 30px 0;
+    .drawerClose {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      cursor: pointer;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .drawerTitle {
+      font-size: 25px;
       font-weight: 600;
     }
   }

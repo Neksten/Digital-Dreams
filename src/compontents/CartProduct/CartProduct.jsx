@@ -23,22 +23,23 @@ const CartProduct = ({productCart, updatedTotalPrice, updatedTotalSale}) => {
 	// посчитать скидки
 	const countSale = (product, status, count) => {
 		if (product.retailPrice) {
-			let sale = (product.retailPrice - product.discountPrice)
+			let sale = (productCart.retailPrice - productCart.discountPrice)
 			if (count) {
 				sale *= count
 			}
 			updatedTotalSale({sale, status: status})
 		}
 	}
-	
+	// посчитать цену
 	const countPrice = (product, status, count) => {
 		count
-			? updatedTotalPrice({price: product.discountPrice * count, status})
-			: updatedTotalPrice({price: product.discountPrice, status})
+			? updatedTotalPrice({price: productCart.discountPrice * count, status})
+			: updatedTotalPrice({price: productCart.discountPrice, status})
 	}
 	
 	// Удалить из корзины
 	async function removeCartProduct(product) {
+		// удалить из redux
 		dispatch(axiosRemoveCartProduct(product.id))
 		
 		//цена
@@ -67,13 +68,6 @@ const CartProduct = ({productCart, updatedTotalPrice, updatedTotalSale}) => {
 			countSale(product, 'decrement')
 		}
 	}
-
-	useEffect(() => {
-		//цена
-		countPrice(product, 'increment', productCart.count)
-		//скидка
-		countSale(product, 'increment', productCart.count)
-	}, [])
 	
 	return (
 		<div className={styles.cartProduct}>

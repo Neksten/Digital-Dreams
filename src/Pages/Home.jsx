@@ -4,6 +4,8 @@ import DropDown from "../compontents/DropDown/DropDown";
 import {ArrowScroll} from "../assets/ArrowScroll";
 import FilterDropDown from "../compontents/FilterDropDown/FilterDropDown";
 import {useDispatch, useSelector} from "react-redux";
+import {Filter} from "../assets/Filter";
+import Drawer from "../compontents/Drawer/Drawer";
 
 const sortedList = [
 	'По возрастанию цены',
@@ -38,6 +40,8 @@ const filters = [
 ]
 
 const Home = () => {
+	const [drawerOpened, setDrawerOpened] = useState(true);
+
 	// Все товары в каталоге
 	const products = useSelector(state => state.productsReducer.products)
 	
@@ -51,6 +55,7 @@ const Home = () => {
 	
 	return (
 		<main className="page home">
+			{drawerOpened && <Drawer content={{sortedList, filters}} drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened}/>}
 			<section className="hero">
 				<div className="container heroContainer">
 					<div className="heroContent">
@@ -70,6 +75,9 @@ const Home = () => {
 									<FilterDropDown key={filter.title} title={filter.title} list={filter.options}/>
 								))}
 								<DropDown list={sortedList}/>
+							</div>
+							<div className="catalogMenuFilters">
+								<div onClick={() => setDrawerOpened(!drawerOpened)} className="catalogMenuFiltersTop"><Filter/> <span>Фильтры</span></div>
 							</div>
 						</div>
 						<div className="catalogProducts">

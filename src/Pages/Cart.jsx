@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {axiosCartProducts} from "../asyncActions/cart";
 import CartProduct from "../compontents/CartProduct/CartProduct";
-import {Link} from "react-router-dom";
-import {CartIcon} from "../assets/CartIcon";
 import {CartEmpty} from "../assets/CartEmpty";
+import SidebarFinal from "../compontents/SidebarFinal/SidebarFinal";
+import CartContext from "../context";
 
 
 const Cart = () => {
-	const [totalPrice, setTotalPrice] = useState(0)
-	const [totalSale, setTotalSale] = useState(0)
-
+	const {
+		totalPrice,
+		setTotalPrice,
+		totalSale,
+		setTotalSale,
+		calculateTotalPrices
+	} = useContext(CartContext)
+	
 	const dispatch = useDispatch()
 	// Все товары в корзине
 	const cartProducts = useSelector(state => state.cartsReducer.cart)
@@ -23,6 +28,7 @@ const Cart = () => {
 			: prevTotalPrice - price
 		)
 	}
+	
 	// обновить итоговую скидку
 	function updatedTotalSale({sale, status}) {
 		setTotalSale(prevTotalSale => status === 'increment'
@@ -38,7 +44,14 @@ const Cart = () => {
 		// подгрузка товаров с бэка
 		dispatch(axiosCartProducts())
 	}, [])
-
+	
+	useEffect(() => {
+		const { totalPrice, totalSale } = calculateTotalPrices(cartProducts);
+		setTotalPrice(totalPrice);
+		setTotalSale(totalSale);
+	}, [cartProducts])
+	
+	// debugger
 	return (
 		<main className="page cart">
 			<div className="container">
@@ -60,20 +73,7 @@ const Cart = () => {
 										/>
 									))}
 								</div>
-								<div className="heroSidebar">
-									<Link to=""><span className="arrange">Перейти к оформлению</span></Link>
-									<div className="info">
-										<span className="total">Всего: {productsLength} товара</span>
-										<div className="sale">
-											<span className="title">Скидка</span>
-											<span className="price">{totalSale} ₽</span>
-										</div>
-										<div className="totalPrice">
-											<span className="title">Итого</span>
-											<span className="price">{totalPrice} ₽</span>
-										</div>
-									</div>
-								</div>
+								<SidebarFinal textBtn={'Перейти к оформлению'} length={productsLength} totalSale={totalSale} totalPrice={totalPrice} redirect={'/order'}/>
 							</div>
 							:
 							<div className="heroEmpty">

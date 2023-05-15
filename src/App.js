@@ -6,11 +6,24 @@ import Cart from "./Pages/Cart";
 import {useEffect} from "react";
 import {axiosProducts} from "./asyncActions/products";
 import {axiosCartProducts} from "./asyncActions/cart";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Order from "./Pages/Order";
+import CartContext from "./context";
+import {useState} from "react";
+import Drawer from "./compontents/Drawer/Drawer";
 
 
 function App() {
   const dispatch = useDispatch()
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalSale, setTotalSale] = useState(0)
+  
+  // высчитывает цену и скиду после загрузки данных с корзины
+  function calculateTotalPrices(cartProducts) {
+    const totalPrice = cartProducts.reduce((acc, el) => acc + (el.discountPrice * el.count), 0);
+    const totalSale = cartProducts.reduce((acc, el) => el.retailPrice ? acc + ((el.retailPrice - el.discountPrice) * el.count) : acc + 0, 0);
+    return { totalPrice, totalSale };
+  }
   
   useEffect(() => {
     // грузим с localstorage корзину и продукты
@@ -24,7 +37,32 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/cart" element={
+            <CartContext.Provider value={
+              {
+                totalPrice,
+                setTotalPrice,
+                totalSale,
+                setTotalSale,
+                calculateTotalPrices
+              }
+            }>
+              <Cart/>
+            </CartContext.Provider>
+          }/>
+          <Route path="/order" element={
+            <CartContext.Provider value={
+              {
+                totalPrice,
+                setTotalPrice,
+                totalSale,
+                setTotalSale,
+                calculateTotalPrices
+              }
+            }>
+              <Order/>
+            </CartContext.Provider>
+          }/>
         </Routes>
         <Footer/>
       </Router>
