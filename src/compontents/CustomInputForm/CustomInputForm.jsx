@@ -54,7 +54,7 @@ const CustomInputForm = ({name, htmlFor, action}) => {
 			       onFocus={(e) => inputClick(e)}
 			       onBlur={onBlurCustomInput}
 			       type="text"
-			       placeholder={`Введите ${name}`}
+			       placeholder={`Введите ${name.toLowerCase()}`}
 			       id={"userName"}
 			       name={"userName"}
 			/>

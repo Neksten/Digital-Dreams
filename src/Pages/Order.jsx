@@ -5,6 +5,7 @@ import {useContext} from "react";
 import CartContext from "../context";
 import CustomInputForm from "../compontents/CustomInputForm/CustomInputForm";
 import {useEffect} from "react";
+import YandexMap from "../compontents/YandexMap/YandexMap";
 
 const Order = () => {
 	const {
@@ -46,6 +47,8 @@ const Order = () => {
 									<CustomInputForm name="Email" htmlFor="userEmail" action="email"/>
 								</div>
 							</form>
+							
+							<YandexMap/>
 						</div>
 						<SidebarFinal textBtn="Оформить" totalPrice={totalPrice} totalSale={totalSale} length={cartProductsLength}/>
 					</div>
