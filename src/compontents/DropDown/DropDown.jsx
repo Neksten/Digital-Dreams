@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import styles from './DropDown.module.scss'
 import {ArrowDown} from "../../assets/ArrowDown";
 import OutsideClickHandler from "../OutsideClickHandler";
+import classNames from 'classnames/bind';
+
+let cx = classNames.bind(styles);
 
 const DropDown = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -19,7 +22,9 @@ const DropDown = (props) => {
 	}
 	
 	return (
-		<div className={styles.dropdown}>
+		<div className={cx(`${styles.dropdown}`, {
+			form: props.form,
+		})}>
 			<OutsideClickHandler onOutsideClick={setIsOpen}>
 				<div onClick={toggleDropdown} className={styles.top}>{props.selectionOption} <span><ArrowDown/></span></div>
 				{isOpen &&

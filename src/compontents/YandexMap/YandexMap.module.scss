@@ -1,0 +1,21 @@
+.map {
+  position: relative;
+  input {
+    margin: 0 0 20px 0 !important;
+  }
+  .addresses {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    z-index: 500;
+    .address {
+      line-height: 35px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}

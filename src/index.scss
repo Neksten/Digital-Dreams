@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
 
 /*Обнуление*/
 * {padding: 0;margin: 0;border: 0;}
@@ -297,61 +298,19 @@ code {
   }
 }
 
-.map {
-  position: relative;
-  input {
-    margin: 0 0 20px 0 !important;
-  }
-  .addresses {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 10px;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    background-color: #fff;
-    z-index: 500;
-    .address {
-      line-height: 35px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  }
-  .customInput {
 
+.creditCardForm {
+  margin: 0 0 50px 0;
+  .creditCard {
+    margin: 0 0 20px 0;
   }
-}
-
-.drawer {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 200;
-  background-color: rgba(0, 0, 0, 0.5);
-  .drawerContent {
-    padding: 40px 10px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-    background-color: #fff;
-    width: 350px;
-  }
-  .drawerTop {
-    margin: 0 0 30px 0;
-    .drawerClose {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      cursor: pointer;
-      svg {
-        width: 30px;
-        height: 30px;
-      }
-    }
-    .drawerTitle {
-      font-size: 25px;
-      font-weight: 600;
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: end;
+    gap: 20px;
+    &:not(:last-child) {
+      margin: 0 0 10px 0;
     }
   }
 }

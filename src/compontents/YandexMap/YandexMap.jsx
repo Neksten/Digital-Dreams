@@ -1,8 +1,9 @@
+import React from "react";
 import {YMaps, Map, ZoomControl, Placemark} from '@pbe/react-yandex-maps';
 import { useState } from "react";
-import styles from "../CustomInputForm/CustomInputForm.module.scss";
-import React from "react";
+import stylesInput from "../CustomInputForm/CustomInputForm.module.scss";
 import OutsideClickHandler from "../OutsideClickHandler";
+import styles from './YandexMap.module.scss'
 
 const addresses = [
 	'ЦУМ, улица Гончарова, 21, Ульяновск, 432000',
@@ -10,9 +11,8 @@ const addresses = [
 	'Mediasoft, улица Кирова, 28, Ульяновск, 432048'
 ]
 
-const YandexMap = () => {
+const YandexMap = ({value, setValue, setAddressValid}) => {
 	const [address, setAddress] = useState('')
-	const [value, setValue] = useState('')
 	const [hideList, setHideList] = useState(false)
 	const [addressesList, setAddressesList] = useState(addresses)
 	
@@ -20,11 +20,13 @@ const YandexMap = () => {
 		const text = 'ЦУМ, улица Гончарова, 21, Ульяновск, 432000'
 		setAddress(text)
 		setValue(text)
+		setAddressValid(true)
 	};
 	const handlePlacemarkClickYam = () => {
 		const text = 'ЯндексМаркет, улица Гончарова, 28/13, Ульяновск, 432000'
 		setAddress(text)
 		setValue(text)
+		setAddressValid(true)
 	};
 	const handlePlacemarkClickMed = () => {
 		const text = 'Mediasoft, улица Кирова, 28, Ульяновск, 432048'
@@ -36,6 +38,7 @@ const YandexMap = () => {
 	function onClickItemList(address) {
 		setValue(address)
 		setAddress(address)
+		setAddressValid(true)
 	}
 	
 	// поиск по адресам
@@ -45,10 +48,15 @@ const YandexMap = () => {
 		if (e.target.value.length > 0) {
 			setAddressesList(addresses.filter(i => i.toLowerCase().includes(value.toLowerCase())))
 		}
+		if (address.some(i => i === e.target.value)) {
+			setAddressValid(true)
+		} else {
+			setAddressValid(false)
+		}
 	}
 	return (
-		<div className="map">
-			<div className={styles.customInput}>
+		<div className={styles.map}>
+			<div className={stylesInput.customInput}>
 				<label htmlFor={address}>Адрес *</label>
 				<input value={value}
 				       onChange={searchInput}
@@ -59,9 +67,9 @@ const YandexMap = () => {
 			</div>
 			{hideList &&
 				<OutsideClickHandler onOutsideClick={setHideList}>
-					<div className="addresses">
+					<div className={styles.addresses}>
 						{addressesList.map(i => (
-							<div onClick={() => onClickItemList(i)} className="address">{i}</div>
+							<div key={i} onClick={() => onClickItemList(i)} className={styles.address}>{i}</div>
 						))}
 					</div>
 				</OutsideClickHandler>
@@ -78,7 +86,7 @@ const YandexMap = () => {
 							zoom: 15,
 							controls: [],
 						}}
-						width='500px'
+						width='100%'
 						height="500px"
 					>
 						<ZoomControl options={{ float: "right" }} />

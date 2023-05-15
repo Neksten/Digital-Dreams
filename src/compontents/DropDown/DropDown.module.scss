@@ -11,6 +11,16 @@
   transition: all 0.3s ease-in-out;
   user-select: none;
   z-index: 300;
+  &.form {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 0;
+    .body {
+      width: 100% !important;
+      top: 35px;
+      border-radius: 0;
+    }
+  }
   .top {
     display: flex;
     align-items: center;
@@ -27,6 +37,8 @@
   .body {
     position: absolute;
     width: 220px;
+    max-height: 200px;
+    overflow-y: auto;
     background-color: #fff;
     top: 41px;
     left: 0;
