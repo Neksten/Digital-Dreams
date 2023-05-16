@@ -14,9 +14,11 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 		switch (action) {
 			case 'phone':
 				value.length === 0 && setValue('+7')
+				setTextError('')
 				break
 			case 'cardCvv':
 				setFlipped(true)
+				setTextError('')
 				break
 			default:
 				setTextError('')
