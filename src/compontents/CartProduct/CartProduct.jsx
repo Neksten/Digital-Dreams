@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './CartProduct.module.scss'
 import Counter from "../Counter/Counter";
 import classNames from 'classnames/bind';
@@ -94,7 +94,7 @@ const CartProduct = ({productCart, updatedTotalPrice, updatedTotalSale}) => {
 					<Counter handleCountDecrementClick={() => handleCountDecrementClick(product)}
 					         handleCountIncrementClick={() => handleCountIncrementClick(product)}
 					         count={productCart.count}
-					         hidenull
+					         hidenull={true}
 					/>
 				</div>
 			</div>

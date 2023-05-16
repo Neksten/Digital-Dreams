@@ -1,6 +1,6 @@
 import {
 	addCartReducerAction,
-	addManyCartProductsReducerAction,
+	addManyCartProductsReducerAction, removeAllCartReducerAction,
 	removeCartReducerAction, updateCountCartDecrementReducerAction, updateCountCartIncrementReducerAction
 } from "../store/cartReducer";
 
@@ -47,6 +47,19 @@ export const axiosAddCartProduct = (product) => {
 }
 
 // delete запрос удаления из корзины на будущем бэке
+export const axiosRemoveAllCartProduct = () => {
+	return async function (dispatch) {
+		try {
+			// очистить корзину в localstorage
+			await localStorage.setItem('cart', JSON.stringify([]))
+			dispatch(removeAllCartReducerAction())
+		} catch (e) {
+			console.error('Error carts remove: ', e.message)
+		}
+	}
+}
+
+// delete запрос удаления из корзины на будущем бэке
 export const axiosRemoveCartProduct = (id) => {
 	return async function (dispatch) {
 		try {
@@ -63,6 +76,7 @@ export const axiosRemoveCartProduct = (id) => {
 		}
 	}
 }
+
 
 // post запрос с изменением count++ на будущем бэке
 export const axiosProductCountIncrementClick = (id) => {

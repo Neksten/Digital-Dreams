@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 let cx = classNames.bind(styles);
 
 const Header = () => {
+	// отследить путь url строки
 	const location = useLocation();
 	const currentUrl = location.pathname;
 	
@@ -24,10 +25,10 @@ const Header = () => {
 								<NavLink to="/cart" className={styles.link}><CartIcon/></NavLink>
 							</li>
 							<li>
-								<NavLink to="" className={styles.link}><Favorite/></NavLink>
+								<div className={styles.link}><Favorite/></div>
 							</li>
 							<li>
-								<a href="" className={styles.link}><User/></a>
+								<div className={styles.link}><User/></div>
 							</li>
 						</ul>
 					</nav>

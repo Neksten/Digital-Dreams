@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Sidebar.module.scss'
+import styles from './SidebarFinal.module.scss'
 import {Link} from "react-router-dom";
 
 const SidebarFinal = ({textBtn, length, totalSale, totalPrice, redirect, send, onSendForm}) => {

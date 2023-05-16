@@ -1,15 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Card from "../compontents/Card/Card";
-import DropDown from "../compontents/DropDown/DropDown";
-import {ArrowScroll} from "../assets/ArrowScroll";
+import Card from "../../compontents/Card/Card";
+import DropDown from "../../compontents/DropDown/DropDown";
+import {ArrowScroll} from "../../assets/ArrowScroll";
 import {useDispatch, useSelector} from "react-redux";
-import {Filter} from "../assets/Filter";
+import {Filter} from "../../assets/Filter";
 import {
 	ascendingPricesProductsAction,
 	byNameProductsAction,
 	descendingPricesProductsAction,
-} from "../store/filtersReducer";
-import FilterList from "../compontents/FilterList";
+} from "../../store/filtersReducer";
+import FilterList from "../../compontents/FilterList";
+import styles from './Home.module.scss'
 
 const sortedList = [
 	'По названию',
@@ -53,30 +54,30 @@ const Home = () => {
 	}, [sortedSelectionOption])
 	
 	return (
-		<main className="page home">
-			<section className="hero">
-				<div className="container heroContainer">
-					<div className="heroContent">
-						<h1 className="heroTitle">Digital Dreams</h1>
-						<p className="heroText">Превращаем цифровые мечты в реальность</p>
-						<span onClick={handleClick} className="heroScroll"><ArrowScroll/></span>
+		<main className={`page ${styles.home}`}>
+			<section className={styles.hero}>
+				<div className={`container ${styles.heroContainer}`}>
+					<div className={styles.heroContent}>
+						<h1 className={styles.heroTitle}>Digital Dreams</h1>
+						<p className={styles.heroText}>Превращаем цифровые мечты в реальность</p>
+						<span onClick={handleClick} className={styles.heroScroll}><ArrowScroll/></span>
 					</div>
 				</div>
 			</section>
-			<section ref={scrollToRef} className="catalog">
+			<section ref={scrollToRef} className={styles.catalog}>
 				<div className="container">
-					<div className="catalogContent">
-						<div className="catalogTop">
-							<h3 className="catalogTitle">Каталог</h3>
-							<div className="catalogFilters">
+					<div className={styles.catalogContent}>
+						<div className={styles.catalogTop}>
+							<h3 className={styles.catalogTitle}>Каталог</h3>
+							<div className={styles.catalogFilters}>
 								<FilterList/>
 								<DropDown list={sortedList} selectionOption={sortedSelectionOption} setSelectionOption={setSortedSelectionOption}/>
 							</div>
-							<div className="catalogMenuFilters">
+							<div className={styles.catalogMenuFilters}>
 								<div onClick={() => setDrawerOpened(!drawerOpened)} className="catalogMenuFiltersTop"><Filter/> <span>Фильтры</span></div>
 							</div>
 						</div>
-						<div className="catalogProducts">
+						<div className={styles.catalogProducts}>
 							{productsFilters.map((product) => (
 								<Card key={product.id} product={product}/>
 							))}

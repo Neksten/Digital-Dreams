@@ -18,4 +18,21 @@
       cursor: pointer;
     }
   }
+  .mapContainer {
+    max-width: 100%;
+  }
+  @media (max-width: 992px) {
+    .mapContainer {
+      max-width: 500px;
+    }
+  }
+  @media (max-width: 768px) {
+    .mapContainer {
+      max-width: 300px;
+      max-height: 300px;
+      overflow: hidden;
+      display: flex;
+      align-items: end;
+    }
+  }
 }

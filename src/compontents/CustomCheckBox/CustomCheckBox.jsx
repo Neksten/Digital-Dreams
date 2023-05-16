@@ -18,7 +18,7 @@ const CustomCheckBox = ({activeParent}) => {
 	return (
 		<div onClick={handleCheckBoxClick} className={cn('customCheckbox', {
 			selected: selected
-		})}></div>
+		})}/>
 	);
 };
 

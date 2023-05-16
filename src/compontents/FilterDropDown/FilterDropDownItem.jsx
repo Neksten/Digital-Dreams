@@ -3,7 +3,8 @@ import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
 const FilterDropDownItem = ({option, addOptionFilter, removeOptionFilter, selectedOptions, title}) => {
 	const [selected, setSelected] = useState(false)
-
+	
+	// активный/неактивный
 	function handleOptionClick() {
 		setSelected(!selected)
 		

@@ -1,14 +1,15 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {axiosCartProducts} from "../asyncActions/cart";
-import CartProduct from "../compontents/CartProduct/CartProduct";
-import {CartEmpty} from "../assets/CartEmpty";
-import SidebarFinal from "../compontents/SidebarFinal/SidebarFinal";
-import CartContext from "../context";
-
+import {axiosCartProducts} from "../../asyncActions/cart";
+import CartProduct from "../../compontents/CartProduct/CartProduct";
+import {CartEmpty} from "../../assets/CartEmpty";
+import SidebarFinal from "../../compontents/SidebarFinal/SidebarFinal";
+import CartContext from "../../context";
+import styles from  "./Cart.module.scss"
 
 const Cart = () => {
+	// Данные с контекста CartContext
 	const {
 		totalPrice,
 		setTotalPrice,
@@ -46,6 +47,7 @@ const Cart = () => {
 	}, [])
 	
 	useEffect(() => {
+		// считаю итоговую цену и скидку
 		const { totalPrice, totalSale } = calculateTotalPrices(cartProducts);
 		setTotalPrice(totalPrice);
 		setTotalSale(totalSale);
@@ -53,18 +55,18 @@ const Cart = () => {
 	
 	// debugger
 	return (
-		<main className="page cart">
+		<main className={`${styles.cart} page`}>
 			<div className="container">
-				<section className="heroCart">
-					<div className="heroTop">
+				<section className={styles.heroCart}>
+					<div className={styles.heroTop}>
 						<h3>Корзина</h3>
 						<span>{productsLength} товара</span>
 					</div>
 					{
 						productsLength
 							?
-							<div className="heroContent">
-								<div className="heroProducts">
+							<div className={styles.heroContent}>
+								<div className={styles.heroProducts}>
 									{cartProducts.map(product => (
 										<CartProduct key={product.id}
 										             productCart={product}
@@ -76,9 +78,9 @@ const Cart = () => {
 								<SidebarFinal textBtn={'Перейти к оформлению'} length={productsLength} totalSale={totalSale} totalPrice={totalPrice} redirect={'/order'}/>
 							</div>
 							:
-							<div className="heroEmpty">
-								<div className="content">
-									<div className="image">
+							<div className={styles.heroEmpty}>
+								<div className={styles.content}>
+									<div className={styles.image}>
 										<CartEmpty/>
 									</div>
 									<h4>Добавьте товары в корзину</h4>

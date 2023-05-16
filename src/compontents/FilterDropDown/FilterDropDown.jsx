@@ -10,6 +10,7 @@ const FilterDropDown = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const options = props.list
 	
+	// открытие/закрытие
 	function toggleDropdown() {
 		setIsOpen(!isOpen)
 	}

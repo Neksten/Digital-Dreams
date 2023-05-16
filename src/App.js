@@ -1,13 +1,13 @@
 import Header from "./compontents/Header/Header";
 import Footer from "./compontents/Footer/Footer";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Cart from "./Pages/Cart";
+import Cart from "./Pages/Cart/Cart";
 import {useEffect} from "react";
 import {axiosProducts} from "./asyncActions/products";
 import {axiosCartProducts} from "./asyncActions/cart";
-import {useDispatch, useSelector} from "react-redux";
-import Order from "./Pages/Order";
+import {useDispatch} from "react-redux";
+import Order from "./Pages/Order/Order";
 import CartContext from "./context";
 import {useState} from "react";
 
@@ -16,8 +16,6 @@ function App() {
   const dispatch = useDispatch()
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalSale, setTotalSale] = useState(0)
-  
-  const products = useSelector(state => state.productsReducer.products)
   
   // высчитывает цену и скиду после загрузки данных с корзины
   function calculateTotalPrices(cartProducts) {
@@ -32,9 +30,6 @@ function App() {
     dispatch(axiosCartProducts())
   }, [])
   
-  // useEffect(() => {
-  //   console.log('я поменялся', products)
-  // }, [products])
   return (
     <div className="App">
       <Router>

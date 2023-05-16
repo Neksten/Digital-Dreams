@@ -1,5 +1,5 @@
 import React from "react";
-import {YMaps, Map, ZoomControl, Placemark} from '@pbe/react-yandex-maps';
+import {YMaps, Map, Placemark} from '@pbe/react-yandex-maps';
 import { useState } from "react";
 import stylesInput from "../CustomInputForm/CustomInputForm.module.scss";
 import OutsideClickHandler from "../OutsideClickHandler";
@@ -48,7 +48,8 @@ const YandexMap = ({value, setValue, setAddressValid}) => {
 		if (e.target.value.length > 0) {
 			setAddressesList(addresses.filter(i => i.toLowerCase().includes(value.toLowerCase())))
 		}
-		if (address.some(i => i === e.target.value)) {
+		// при вводе валидного адреса с клавиатуры
+		if (addressesList.some(i => i === e.target.value)) {
 			setAddressValid(true)
 		} else {
 			setAddressValid(false)
@@ -79,7 +80,7 @@ const YandexMap = ({value, setValue, setAddressValid}) => {
 					apikey: '2d5c5d27-f61a-4a85-9cab-db9cdfe57168',
 				}}
 			>
-				<div>
+				<div className={styles.mapContainer}>
 					<Map
 						defaultState={{
 							center: [54.319742, 48.395900],
@@ -89,7 +90,6 @@ const YandexMap = ({value, setValue, setAddressValid}) => {
 						width='100%'
 						height="500px"
 					>
-						<ZoomControl options={{ float: "right" }} />
 						<Placemark geometry={[54.319742, 48.395900]} onClick={handlePlacemarkClickMed}/>
 						<Placemark geometry={[54.318297, 48.396636]} onClick={handlePlacemarkClickCoom}/>
 						<Placemark geometry={[54.316338, 48.396079]} onClick={handlePlacemarkClickYam}/>

@@ -6,6 +6,7 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 	
 	const inputRef = useRef()
 	
+	// по клику на input
 	function inputClick(e) {
 		e.currentTarget.style.borderBottom = '1px solid #000'
 		inputRef.current.focus()
@@ -21,16 +22,17 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 				setTextError('')
 		}
 	}
+	// при обновление value input
 	const onChangeInput = (e) => {
 		const { value } = e.target;
 		switch(action) {
 			case 'userName':
-				if (/^[a-zA-Z]+$/.test(value)) {
+				if (/^([a-zA-Zа-яА-Я]+)$/.test(value) || value === '') {
 					setValue(value);
 				}
 				break;
 			case 'userSurname':
-				if (/^[a-zA-Z]+$/.test(value)) {
+				if (/^([a-zA-Zа-яА-Я]+)$/.test(value) || value === '') {
 					setValue(value);
 				}
 				break;
@@ -40,17 +42,27 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 				}
 				break
 			case 'cardNumber':
-				if (value.length <= 16 && /^\d+$/.test(value)) {
+				if (value.length <= 16 && /^\d+$/.test(value) || value === '') {
 					setValue(value);
 				}
 				break;
 			case 'cardHolder':
-				if (value.length <= 20 && /^[a-zA-Z]+$/.test(value)) {
+				if (value.length <= 20 && /^([a-zA-Zа-яА-Я]+)$/.test(value) || value === '') {
 					setValue(value);
 				}
 				break;
 			case 'cardCvv':
-				if (value.length <= 4 && /^\d+$/.test(value)) {
+				if (value.length <= 3 && /^\d+$/.test(value) || value === '') {
+					setValue(value);
+				}
+				break;
+			case 'releaseMonth':
+				if (Number(value) <= 12 && value.length <= 2 && /^\d+$/.test(value) || value === '') {
+					setValue(value);
+				}
+				break;
+			case 'releaseYear':
+				if (Number(value) <= 23 && value.length <= 2 && /^\d+$/.test(value) || value === '') {
 					setValue(value);
 				}
 				break;
@@ -58,12 +70,12 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 				setValue(value);
 		}
 	};
-	
+	// ошибка
 	const errorStatus = (text) => {
 		setTextError(text)
 		inputRef.current.style.borderBottom = '1px solid #c20000'
 	}
-	
+	// при потери фокуса с input
 	function onBlurCustomInput() {
 		switch (action) {
 			case 'phone':
@@ -78,8 +90,41 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 				!valid && errorStatus('Введите почту правильно');
 				break
 			case 'cardCvv':
+				if (value.length < 3) {
+					errorStatus('Введите cvv');
+				}
 				setFlipped(false)
 				break
+			case 'cardHolder':
+				if (value.length <= 4) {
+					errorStatus('Введите владельца');
+				}
+				break
+			case 'cardNumber':
+				if (value.length < 16) {
+					errorStatus('Введите номер карты');
+				}
+				break;
+			case 'userName':
+				if (value.length <= 1) {
+					errorStatus('Введите имя');
+				}
+				break;
+			case 'userSurname':
+				if (value.length <= 1) {
+					errorStatus('Введите фамилию');
+				}
+				break;
+			case 'releaseMonth':
+				if (value.length === 0) {
+					errorStatus('Введите месяц выпуска');
+				}
+				break;
+			case 'releaseYear':
+				if (value.length === 0) {
+					errorStatus('Введите год выпуска');
+				}
+				break;
 			default:
 				break
 		}

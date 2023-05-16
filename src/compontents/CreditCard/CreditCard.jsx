@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './CreditCard.module.scss'
 import classNames from 'classnames/bind';
 
@@ -12,7 +12,7 @@ const CreditCard = ({ number, name , expiry, cvv, flipped }) => {
 		<div className={cx(`${styles.card}`, {
 			flipped: flipped,
 		})}>
-			<div className={styles.cardBackground}></div>
+			<div className={styles.cardBackground}/>
 			<div className={styles.cardContent}>
 				<div className={styles.cardFront}>
 					<div className={styles.cardNumber}>{number}</div>
@@ -28,7 +28,7 @@ const CreditCard = ({ number, name , expiry, cvv, flipped }) => {
 					</div>
 				</div>
 				<div className={styles.cardBack}>
-					<div className={styles.cardStripe}></div>
+					<div className={styles.cardStripe}/>
 					<div className={styles.cardCvv}>{cvv}</div>
 				</div>
 			</div>

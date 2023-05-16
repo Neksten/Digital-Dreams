@@ -46,14 +46,14 @@ const Card = ({product}) => {
 	
 	return (
 		<div className={styles.card}>
-			<a href="" className={styles.cardBody}>
+			<div className={styles.cardBody}>
 				<div className={styles.cardImage}>
 					<img src={product.imgUrl} alt="product"/>
 				</div>
 				<span className={styles.cardPrice}>{product.discountPrice} ₽</span>
 				{product.retailPrice && <span className={styles.cardSale}>{product.retailPrice} ₽</span>}
 				<p className={styles.cardName}>{product.title}</p>
-			</a>
+			</div>
 			{productCart && productCart.count >= 1 ?
 				<Counter handleCountDecrementClick={() => handleCountDecrementClick(product)}
 				         handleCountIncrementClick={() => handleCountIncrementClick(product)}

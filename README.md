@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Elgin Denis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+Тестовое задание:
 
-## Available Scripts
+Написать SPA приложение (интернет-магазин).
+_Необходимый функционал:_
+- Развернуть React/Redux приложение
+- route / - вывод товаров. Реализовать сортировки по цене и по названию. Реализовать исключающие фильтры по товарам по какому-либо признаку товара;
+- Реализовать функционал добавления товаров в корзину;
+- route /cart - вывод краткой информации о товарах добавленных в корзину;
+- route /order - оформление заказа;
+    - 1-ый шаг - информация о покупателе
+    - 2-ый шаг - банковская карта
+    - 3-ый шаг - информация об адресе. Сделать возможность указать адрес через карту
 
-In the project directory, you can run:
+---
 
-### `npm start`
+Описание проекта:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Интернет-магазин цифровой и бытовой техники под названием "Digital Dreams".
+- Главная страница ( route / ) - происходит вывод товаров. Из функционала:
+    - добавление в корзину;
+    - счётчик изменяющий количество товаров в корзине;
+    - сортировка товаров:  по названию(по умолчанию), по возрастанию цены, по убыванию цены;
+    - исключающие фильтры по 2-м категориям: цвет, бренд.
+- Страница корзины ( route /cart ) - чтобы в неё попасть нужно кликнуть на иконку корзины в header. Из функционала:
+    - статус пустой корзины
+    - счётчик, изменяющий количество товара в корзине;
+    - удаление товара из корзины
+    - подсчёт итоговой стоимости и скидки
+- Страница оформления заказа ( route /order ) - чтобы в неё попасть нужно кликнуть на кнопку "Перейти к оформлению". Из функционала:
+    - валидация у полей ввода
+    - ввод банковской карты
+    - возможность выбора ПВЗ на карте кликом на метку
+    - выпадающее меню доступных ПВЗ при клике на input с адресом
+    - подсчёт итоговой стоимости и скидки
+    - отправка json строки в консоль при успешном оформление заказа
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+Подготовительные действия:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  Произвести клонирование репозитория в свою папку `git clone https://github.com/Neksten/Digital-Dreams.git`
+2.  Прописать в консоли `npm i`
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Как запускать проект:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Для запуска проекта пропишите в конcоли `npm start`

@@ -87,4 +87,20 @@
       opacity: 0;
     }
   }
+  @media (max-width: 480px) {
+    width: 300px;
+    height: 180px;
+    .cardFront {
+      padding: 60px 0 0 0;
+    }
+    .cardNumber {
+      font-size: 20px;
+    }
+    .cardName, .cardExpiry {
+      font-size: 18px;
+      span:nth-child(1) {
+        font-size: 12px;
+      }
+    }
+  }
 }
