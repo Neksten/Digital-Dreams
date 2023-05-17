@@ -2,38 +2,37 @@ import React, {useState} from 'react';
 import styles from './DropDown.module.scss'
 import {ArrowDown} from "../../assets/ArrowDown";
 import OutsideClickHandler from "../OutsideClickHandler";
+import classNames from 'classnames/bind';
 
-const sortedList = [
-	'По возрастанию цены',
-	'По убыванию цены',
-	'По названию'
-]
+let cx = classNames.bind(styles);
 
-const DropDown = () => {
+const DropDown = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [selectionOption, setSelectedOption] = useState('Сортировать')
 	
-	const options = sortedList
+	const options = props.list
+	
 	// Открытие/закрытие dropdown
 	function toggleDropdown() {
 		setIsOpen(!isOpen)
 	}
 	// При клике на элемент dropdown
 	function handleOptionClick(option) {
-		setSelectedOption(option)
+		props.setSelectionOption(option)
 		setIsOpen(false)
 	}
 	
 	return (
-		<div className={styles.dropdown}>
+		<div className={cx(`${styles.dropdown}`, {
+			form: props.form,
+		})}>
 			<OutsideClickHandler onOutsideClick={setIsOpen}>
-				<div onClick={toggleDropdown} className={styles.top}>{selectionOption} <span><ArrowDown/></span></div>
+				<div onClick={toggleDropdown} className={styles.top}>{props.selectionOption} <span><ArrowDown/></span></div>
 				{isOpen &&
 					<div className={styles.body}>
 						<ul>
 							{options.map((option => (
 								<li key={option} onClick={() => handleOptionClick(option)}>
-									{option}
+									<span>{option}</span>
 								</li>
 							)))}
 						</ul>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
 
 /*Обнуление*/
 * {padding: 0;margin: 0;border: 0;}
@@ -7,7 +8,7 @@
 :focus, :active {outline: none;}
 a:focus, a:active {outline: none;}
 nav, footer, header, aside {display: block;}
-html, body {height: 100%;width: 100%;font-size: 100%;line-height: 1;font-size: 14px;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
+html, body {height: 100%;width: 100%;line-height: 1;font-size: 14px;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
 input, button, textarea {font-family: inherit;}
 input::-ms-clear {display: none;}
 button {cursor: pointer;}
@@ -48,100 +49,4 @@ code {
 }
 .page {
   flex: 1;
-}
-
-
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: url('./img/hero/bg-hero.jpg') center no-repeat fixed;
-  background-size: cover;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  position: relative;
-  .heroContainer {
-    max-width: 600px;
-  }
-  .heroContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .heroTitle {
-    font-size: 70px;
-    font-weight: 600;
-    line-height: 115%;
-    margin: 0 0 20px 0;
-  }
-  .heroText {
-    font-size: 16px;
-    text-align: center;
-  }
-  .heroScroll {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    svg {
-      fill: rgba(255, 255, 255, 0);
-      transition: all 0.5s ease-in-out;
-    }
-    &:hover {
-      opacity: 0.5;
-      svg {
-        fill: rgba(255, 255, 255, 0.05);
-      }
-    }
-  }
-  .heroImage {
-    width: 320px;
-    img {
-      max-width: 100%;
-    }
-  }
-}
-
-.catalog {
-  padding: 50px 0;
-  .catalogTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 30px 0;
-  }
-  .catalogTitle {
-    font-size: 35px;
-    font-weight: 600;
-  }
-  .catalogFilters {
-    display: flex;
-    align-items: center;
-  }
-  .catalogFilter {
-    height: 35px;
-    line-height: 35px;
-    border-radius: 5px;
-    text-align: center;
-    width: 180px;
-    max-width: 100%;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    user-select: none;
-    padding: 0 20px;
-    background-color: #2C2E30;
-    color: #fff;
-    &:hover {
-      opacity: 0.95;
-    }
-  }
-  .catalogProducts {
-    display: grid;
-    grid-template-columns: repeat(5, 210px);
-    justify-content: space-between;
-    row-gap: 30px;
-  }
 }
