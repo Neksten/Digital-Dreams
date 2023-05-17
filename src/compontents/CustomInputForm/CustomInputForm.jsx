@@ -39,7 +39,7 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 				}
 				break;
 			case 'phone':
-				if (value.length <= 11 && /^\d+$/.test(value.slice(1))) {
+				if (value.length <= 12 && /^\d+$/.test(value.slice(1))) {
 					setValue(value)
 				}
 				break
@@ -81,7 +81,7 @@ const CustomInputForm = ({name, htmlFor, action, placeholder, value, setValue, s
 	function onBlurCustomInput() {
 		switch (action) {
 			case 'phone':
-				if (value.length !== 11 && value.length > 0) {
+				if (value.length !== 12 && value.length > 0) {
 					errorStatus('Номер телефона должен состоять из 11 цифр.')
 				} else if (value.length === 0) {
 					errorStatus('Введите ваш номер')

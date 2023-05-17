@@ -6,9 +6,9 @@ import OutsideClickHandler from "../OutsideClickHandler";
 import styles from './YandexMap.module.scss'
 
 const addresses = [
-	'ЦУМ, улица Гончарова, 21, Ульяновск, 432000',
-	'ЯндексМаркет, улица Гончарова, 28/13, Ульяновск, 432000',
-	'Mediasoft, улица Кирова, 28, Ульяновск, 432048'
+	'ЦУМ, улица Гончарова, 21, Ульяновск',
+	'ЯндексМаркет, улица Гончарова, 28/13, Ульяновск',
+	'Mediasoft, улица Карла Маркса, 13Ак3'
 ]
 
 const YandexMap = ({value, setValue, setAddressValid}) => {

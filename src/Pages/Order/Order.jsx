@@ -90,7 +90,7 @@ const Order = () => {
 			&& cardCvv.length === 3
 			&& cardMonth
 			&& cardYear
-			&& userPhone.length === 11
+			&& userPhone.length === 12
 			&& /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)
 			&& addressValid
 		) {
